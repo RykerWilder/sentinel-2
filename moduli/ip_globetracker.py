@@ -1,7 +1,15 @@
 import requests
 import shutil
 from colorama import Style, Fore
-from sentinel import print_dynamic_dots
+
+
+def print_dynamic_dots(label, value):
+    """
+    Stampa un'etichetta e un valore con puntini di allineamento.
+    """
+    dots = '.' * (40 - len(str(label)))
+    print(f"{label} {dots} {value}")
+
 
 class IPGlobeTracker:
 
@@ -10,7 +18,7 @@ class IPGlobeTracker:
             response = requests.get(f"http://ip-api.com/json/{ip_address}")
             data = response.json()
             if data['status'] == 'success':
-                self.print_ip_info(data);
+                self.print_ip_info(data)  # Rimosso il punto e virgola
             else:
                 print("Unable to get information for this IP")
         except Exception as e:

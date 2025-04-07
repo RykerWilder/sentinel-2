@@ -4,7 +4,20 @@ import psutil
 import requests
 import shutil
 from colorama import Style, Fore
-from sentinel import print_dynamic_dots
+
+
+def print_dynamic_dots(label, value, width=40):
+    """
+    Print a label and value with dots in between for alignment.
+
+    Args:
+        label: The label to print
+        value: The value to print
+        width: The width to align the value at
+    """
+    dots = "." * (width - len(label))
+    print(f"{label} {dots} {value}")
+
 
 class SysInsider:
 
@@ -23,14 +36,14 @@ class SysInsider:
             "architecture": platform.architecture()[0],
             "machine": platform.machine()
         }
-        
+
         if system == "Darwin":
             details["version"] = f"macOS {platform.mac_ver()[0]}"
         elif system == "Windows":
             details["version"] = f"Windows {platform.release()}"
         elif system == "Linux":
             details["version"] = f"Linux {platform.release()}"
-        
+
         return details
 
     def get_cpu_info(self):
@@ -94,7 +107,7 @@ class SysInsider:
     def print_system_info(self):
         terminal_width = shutil.get_terminal_size().columns
         print(f"\n{'='*40}{Fore.GREEN} SysInsider {Style.RESET_ALL}{'='*40}")
-        
+
         # OS Information
         os_details = self.get_os_details()
         print_dynamic_dots('OS', f"{os_details['version']} ({os_details['architecture']})")
@@ -103,7 +116,7 @@ class SysInsider:
         # Hardware Information
         cpu = self.get_cpu_info()
         print_dynamic_dots('CPU', f"{cpu['name']} ({cpu['cores']} cores, {cpu['threads']} threads) - {cpu['usage']}% usage")
-        
+
         ram = self.get_ram_info()
         print_dynamic_dots('RAM', f"{ram['total']} GB total, {ram['used']} GB used ({ram['percent']}%)")
 
@@ -114,7 +127,7 @@ class SysInsider:
         for name, data in network_info.get("interfaces", {}).items():
             if data.get("is_up", False) and data.get("addresses", []):
                 print_dynamic_dots(f"  {name}", f"{', '.join(data['addresses'])}")
-        
+
         # Storage Information
         print("Storage:")
         for disk in self.get_disk_usage():
