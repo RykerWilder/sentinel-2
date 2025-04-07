@@ -1,1 +1,1 @@
-# sentinel-2
+# sentinel Cross platform
