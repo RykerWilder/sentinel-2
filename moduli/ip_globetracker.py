@@ -38,3 +38,7 @@ class IPGlobeTracker:
         print_dynamic_dots('Organization', data.get('org'))
         print_dynamic_dots('AS', data.get('as'))
         print("=" * terminal_width + "\n")
+if __name__ == "__main__":
+    tracker = IPGlobeTracker()
+    ip_address = input("Inserisci un indirizzo IP: ")
+    tracker.get_ip_info(ip_address)

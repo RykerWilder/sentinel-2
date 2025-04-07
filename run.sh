@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # Naviga alla directory dove si trova run.sh
@@ -17,43 +16,39 @@ source venv/bin/activate
 # Mostra il menu
 PS3="Scegli un'opzione: "
 options=(
-  "Esegui Script 1"
-  "Esegui Script 2"
-  "Esegui Script 3"
-  "Esegui Script 4"
-  "Esegui nmap"
-  "Esegui Wireshark"
-  "Esci"
+  "Gather software's weaknesses"
+  "Gather ip information"
+  "Gather sys information"
+  "Run nmap"
+  "Run wireshark"
+  "Exit"
 )
 
 select opt in "${options[@]}"; do
   case $opt in
-    "Esegui Script 1")
+    "Gather software's weaknesses")
       python moduli/cve_hunter.py
       ;;
-    "Esegui Script 2")
+    "Gather ip information")
       python moduli/ip_globetracker.py
       ;;
-    "Esegui Script 3")
-      python moduli/script3.py
+    "Gather sys information")
+      python moduli/sys_insider.py
       ;;
-    "Esegui Script 4")
-      python moduli/script4.py
-      ;;
-    "Esegui nmap")
-      echo "Esecuzione di nmap..."
+    "Run nmap")
+      echo "Wait for nmap..."
       nmap -v
       ;;
-    "Esegui Wireshark")
-      echo "Esecuzione di Wireshark..."
+    "Run wireshark")
+      echo "Wait for Wireshark..."
       wireshark
       ;;
-    "Esci")
-      echo "Uscita..."
+    "Exit")
+      echo "Exit..."
       break
       ;;
     *)
-      echo "Scelta non valida!"
+      echo "Invalid choice!"
       ;;
   esac
 done

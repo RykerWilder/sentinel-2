@@ -134,3 +134,7 @@ class SysInsider:
             print(f"  {disk['device']} ({disk['mountpoint']}):")
             print(f"    Total: {disk['total']} GB, Used: {disk['used']} GB ({disk['percent']}%)")
         print("=" * terminal_width + "\n")
+
+if __name__ == "__main__":
+            system_info = SysInsider()
+            system_info.print_system_info()

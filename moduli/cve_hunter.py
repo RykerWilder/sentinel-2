@@ -3,12 +3,14 @@ import shutil
 from colorama import Fore, Style
 
 def check_cves_for_software(software_name):
+    # Sposto terminal_width fuori dal blocco try
+    terminal_width = shutil.get_terminal_size().columns
+
     url = f"https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch={software_name}"
     try:
         response = requests.get(url)
         response.raise_for_status()  # Verifica errori HTTP
         data = response.json()
-        terminal_width = shutil.get_terminal_size().columns #terminal width
 
         if data.get("totalResults", 0) > 0:
             print(f"\n{'='*40}{Fore.GREEN} CVE Hunter {Style.RESET_ALL}{'='*40}")
@@ -21,7 +23,7 @@ def check_cves_for_software(software_name):
             print(f"No CVE found for {software_name}.")
     except Exception as e:
         print(f"Error while requesting: {e}")
-    
+
     print("=" * terminal_width + "\n")
 
 if __name__ == "__main__":
