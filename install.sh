@@ -20,5 +20,5 @@ if ! brew ls --versions nmap > /dev/null; then
 fi
 
 if ! brew ls --versions wireshark > /dev/null; then
-    brew install wireshark --with-qt || { echo "Errore nell'installazione di wireshark"; exit 1; }
+    brew install wireshark || { echo "Errore nell'installazione di wireshark"; exit 1; }
 fi
