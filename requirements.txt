@@ -1,3 +1,6 @@
+<<<<<<< Updated upstream
 Requests==2.32.3
 psutil==7.0.0
 colorama==0.4.6
+=======
+>>>>>>> Stashed changes
