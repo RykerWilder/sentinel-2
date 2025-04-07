@@ -1,2 +1,11 @@
-venv/
-/macOS/.DS_Store
+# Ignora tutti i file .DS_Store (macOS)
+**/.DS_Store
+
+# Ignora la cartella venv (ambiente virtuale Python) dentro macOS/
+macOS/venv/
+
+# Opzionale: Altri elementi comuni da ignorare
+__pycache__/
+*.pyc
+*.pyo
+*.env
